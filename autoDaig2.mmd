@@ -1,26 +1,73 @@
 classDiagram 
-test --> ALM
+Modules --> ALM
 ALM --> apl_alm_histo_p
+ALM : * Standard included files
+
+ALM : #include "apl_alm_histo_p.h"
+ALM : * Project included files
+ALM : #include "DEF/lib_def_soco.h"
+ALM : #include "EEP/lib_eep.h"
+ALM : #include "ALM/lib_alm_dts_interface_p.h"
 ALM --> apl_alm_isom_p
 ALM --> apl_alm_p
+ALM : #include "ERR/lib_err.h"
+ALM : #include "STG/lib_stg.h"
+ALM : #include "ALM/lib_alm.h"
+ALM : #include "ALM/lib_alm_p.h"
+ALM : #include "ALM/apl_alm.h"
+ALM : #include "ALM/apl_alm_p.h"
+ALM : #include "ALM/apl_alm_histo.h"
+ALM : #include "ALM/apl_alm_system.h"
+ALM : #include "CTX/lib_ctx.h"
+ALM : #include "BUZ/lib_buz.h"
+ALM : #include "DTL/AER/lib_dtl_aer.h"
+ALM : #include "MBS/apl_mbs_token_p.h"
+ALM : #include "LED/lib_led.h"
+ALM : #include "HMI/lib_hmi_p.h"
+ALM : #include "DAT/lib_dat.h"
+ALM : #include "EMA/lib_ema.h"
+ALM : #include "TSY/lib_tsy.h"
+ALM : #include "MBM/lib_mbm.h"
+ALM : #include "TPL/lib_tpl.h"
+ALM : #include "IND/lib_ind.h"
+ALM : #include "MBD_Master/lib_mbd.h"
+ALM : #include "EVE/lib_eve.h"
+ALM : #include "DTC/lib_dtc.h"
+ALM : #include "WEB/apl_web_auth.h"
+ALM : #include "TCP/lib_tcp_ip.h"
+ALM : #include "GEN/lib_gen.h"
+ALM : #include "BLE/apl_ble_p.h"
+ALM : #include "ALM/lib_alm_analog.h"
+ALM : #include "ALM/lib_alm_logical.h"
+ALM : #include "IOM/lib_iom.h"
+ALM : #include "ALM/lib_alm_combi.h"
+ALM : #include "ALM/lib_alm_EN50160.h"
+ALM : #include "ALM/lib_alm_inrush.h"
+ALM : #include "ALM/lib_alm_system.h"
+ALM : #include "ALM/lib_alm_isom.h"
+ALM : #include "ALM/lib_alm_boolean.h"
 ALM --> apl_alm_popup_p
+ALM : * Project C included files
+ALM : #include "HMI/apl_hmi_backlight.h"
+ALM : #include "DTL/AER/apl_dtl_aer_inprogress_alarms_p.h"
+ALM : * Project C++ included files
+ALM : #include "SHI/Generated/apl_shi_screen.hpp"
 ALM --> lib_alm_dts_interface_p
+ALM : #include "DTS/lib_dts.h"
+ALM : #include "MBS/lib_mbs.h"
 ALM --> lib_alm_p
-test --> APM
+ALM : #include "ALM/lib_alm_types.h"
+Modules --> APM
 APM --> apl_apm_alm
-APM --> apl_apm_cfg
-APM --> apl_apm_data
-APM --> apl_apm_tpl
-APM --> lib_apm
-APM --> lib_apm_dts_interface_p
-APM --> lib_apm_stg_interface_p
-APM --> apl_bac
-APM --> apl_bac_alm
-APM --> apl_bac_cfg
-APM --> apl_bac_stg
-APM --> lib_bac_stack_if
-APM --> apl_bac_AnalogInput
-APM --> apl_bac_BinaryInput
-APM --> apl_bac_BinaryOutput
-APM --> apl_bac_device
-APM --> apl_bac_gw_device
+APM : * Standard included files
+APM : #include "DEF/lib_def_soco.h"
+APM : * Project included files
+APM : #include "APM/SNMP/apl_snmp_cfg.h"    /* for LIB_APM_PROJECT_Dxx, APM_SNMP_IMPLEMENTED, APM_BACNET_IMPLEMENTED, DEFAULT VALUES, ... */
+APM : #include "APM/apl_apm_alm.h"    /* File Own Header  */
+APM : #include "APM/lib_apm.h"        /* Tracing */
+APM : #include "ALM/lib_alm_types.h"
+APM : #include "APM/SNMP/apl_snmp_alm.h"      /* for AplApmSnmpAlarmNotify ... */
+APM : #include "APM/SNMP/apl_snmp_stg.h"
+APM : #include "APM/BACNET/apl_bac_alm.h"     /* for AplApmBacnetAlarmNotify ... */
+APM : #include "APM/BACNET/apl_bac_stg.h"
+APM : #include "DIC/lib_dic_serviceidreversetable.h"

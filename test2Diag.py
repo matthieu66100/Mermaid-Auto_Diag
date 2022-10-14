@@ -1,43 +1,57 @@
 import os
 
+# Main
 def main():
     zCompletListFiles = []
     originPath = 'REPERTOIRE'
     diagfile = open('autoDaig2.mmd','w')
 
 
-    #init mermaid class diagram
+    # Init mermaid class diagram
     diagfile.write('classDiagram \n')
 
-    #main
+    # List all the path
     for root, dirs, files in os.walk(originPath):        
         for i in files:
             nameFile = os.path.join(root, i)
-            # diagfile.write(nameFile + '\n')
+            #diagfile.write(nameFile + '\n')
             zCompletListFiles.append(nameFile)
 
 
-    #generate links
-    for i in range(40):
+    # Generate links
+    for i in range(10):
         splitText = zCompletListFiles[i].split('\\')
         
+        # Writing Modules Links of the Programm
         module = splitText[1]
+        diagfile.write('Modules --> ' + module + '\n')
         
+        # Writing files links with theyre modules
         maxLenList = len(splitText)
         fichier = splitText[maxLenList - 1]
         fichiercourt = fichier.split('.')
 
-        diagfile.write('test --> ' + module + '\n')
         diagfile.write(module + ' --> ' + fichiercourt[0] + '\n')
-        
-#clean Links doublons
 
+        # Writing includes in the files
+        includeWord = 'include'
+        fileCheck = open(zCompletListFiles[i],'r')
+        for line in fileCheck:
+            if includeWord in line:
+                diagfile.write(module + ' : ' + line + '\n')
+
+            
+    # Writing functions in the files
+            #print(zCompletListFiles[i])
+
+        
+#######################################################
+
+# clean Links doublons
 def cleanFileLinks():
         
     ls = []
     filename = 'autoDaig2.mmd'
-    
-    
 
     with open(filename, 'r') as file:
 
@@ -55,5 +69,6 @@ def cleanFileLinks():
 ######################################################
 
 
-
+main()
 cleanFileLinks()
+
