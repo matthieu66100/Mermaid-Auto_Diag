@@ -1,45 +1,47 @@
 import os
 
+TAILLE_TRAITEMENT = 70
+PATH = 'REPERTOIRE'
+PATH_MERMAID = 'Class_Diagram.mmd'
+
 # Main
 def main():
+    zMermaidFile = open(PATH_MERMAID,'w')
     zCompletListFiles = []
-    originPath = 'REPERTOIRE'
-    diagfile = open('autoDaig2.mmd','w')
-
 
     # Init mermaid class diagram
-    diagfile.write('classDiagram \n')
+    zMermaidFile.write('classDiagram \n')
 
     # List all the path
-    for root, dirs, files in os.walk(originPath):        
+    for root, dirs, files in os.walk(PATH):        
         for i in files:
             nameFile = os.path.join(root, i)
-            #diagfile.write(nameFile + '\n')
+            #zMermaidFile.write(nameFile + '\n')
             zCompletListFiles.append(nameFile)
 
 
     # Generate links
-    for i in range(10):
+    for i in range(TAILLE_TRAITEMENT):
         splitText = zCompletListFiles[i].split('\\')
         
         # Writing Modules Links of the Programm
         module = splitText[1]
-        diagfile.write('Modules --> ' + module + '\n')
+        zMermaidFile.write('Modules --> ' + module + '\n')
         
         # Writing files links with theyre modules
         maxLenList = len(splitText)
         fichier = splitText[maxLenList - 1]
-        fichiercourt = fichier.split('.')
+        fichierCourt = fichier.split('.')
 
-        diagfile.write(module + ' --> ' + fichiercourt[0] + '\n')
+        zMermaidFile.write(module + ' --> ' + fichierCourt[0] + '\n')
 
         # Writing includes in the files
-        includeWord = 'include'
+        includeWord = 'include '
         fileCheck = open(zCompletListFiles[i],'r')
         for line in fileCheck:
             if includeWord in line:
-                diagfile.write(module + ' : ' + line + '\n')
-
+                zMermaidFile.write(module + ' : ' + line + '\n')
+        fileCheck.close()
             
     # Writing functions in the files
             #print(zCompletListFiles[i])
@@ -51,17 +53,16 @@ def main():
 def cleanFileLinks():
         
     ls = []
-    filename = 'autoDaig2.mmd'
+    MermaidFile = PATH_MERMAID
 
-    with open(filename, 'r') as file:
+    with open(MermaidFile, 'r') as file:
 
         for line in file:
 
             if line not in ls:
                 ls.append(line)
 
-
-    with open(filename, 'w') as file:
+    with open(MermaidFile, 'w') as file:
         for line in ls:
             file.write(line)
 
