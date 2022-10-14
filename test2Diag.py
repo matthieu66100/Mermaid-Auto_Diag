@@ -30,7 +30,8 @@ def main():
     for root, dirs, files in os.walk(originPath):        
         for i in files:
             pathList(root,i)
-    test = zCompletListFiles[1].split('\\')
+    
+    reposplit = zCompletListFiles[1].split('\\')
     initRepo()
 
 
@@ -40,8 +41,8 @@ def main():
 main()
 
 print(zCompletListFiles[1])
-test = zCompletListFiles[1].split('\\')
-print (test[1])
+test = zCompletListFiles[29].split('\\') #Files[nb] -> nb = lines 
+print (test[1]) #[nb] -> nb parameters in the line
         
 
 
