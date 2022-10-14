@@ -47,6 +47,8 @@ def main():
                     cleanInclude = line.split('/*')
                 else:
                     cleanInclude = line.split('//')
+                cleanInclude[0] = line.replace('-','_')
+                
                 zMermaidFile.write(fichierCourt[0] + ' : ' + cleanInclude[0] + '\n') 
         fileCheck.close()
             
