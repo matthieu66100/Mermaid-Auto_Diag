@@ -1,6 +1,6 @@
 import os
 
-TAILLE_TRAITEMENT = 70
+TAILLE_TRAITEMENT = 47 #BMT Supp
 PATH = 'REPERTOIRE'
 PATH_MERMAID = 'Class_Diagram.mmd'
 
@@ -8,6 +8,7 @@ PATH_MERMAID = 'Class_Diagram.mmd'
 def main():
     zMermaidFile = open(PATH_MERMAID,'w')
     zCompletListFiles = []
+    zNbFiles=0
 
     # Init mermaid class diagram
     zMermaidFile.write('classDiagram \n')
@@ -18,6 +19,8 @@ def main():
             nameFile = os.path.join(root, i)
             #zMermaidFile.write(nameFile + '\n')
             zCompletListFiles.append(nameFile)
+            zNbFiles = zNbFiles + 1
+    print(zNbFiles)#BMT Supp
 
 
     # Generate links
@@ -40,7 +43,11 @@ def main():
         fileCheck = open(zCompletListFiles[i],'r')
         for line in fileCheck:
             if includeWord in line:
-                zMermaidFile.write(module + ' : ' + line + '\n')
+                if '/*' in line:
+                    cleanInclude = line.split('/*')
+                else:
+                    cleanInclude = line.split('//')
+                zMermaidFile.write(fichierCourt[0] + ' : ' + cleanInclude[0] + '\n') 
         fileCheck.close()
             
     # Writing functions in the files
