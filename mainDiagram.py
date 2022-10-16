@@ -43,17 +43,18 @@ def main():
         fileCheck = open(zCompletListFiles[i],'r')
         for line in fileCheck:
             if includeWord in line:
+                
+                line.replace('p-c','p_c')
+
                 if '/*' in line:
                     cleanInclude = line.split('/*')
                 else:
                     cleanInclude = line.split('//')
-                cleanInclude[0] = line.replace('-','_')
                 
                 zMermaidFile.write(fichierCourt[0] + ' : ' + cleanInclude[0] + '\n') 
         fileCheck.close()
             
-    # Writing functions in the files
-            #print(zCompletListFiles[i])
+        # Writing functions in the files
 
         
 #######################################################
